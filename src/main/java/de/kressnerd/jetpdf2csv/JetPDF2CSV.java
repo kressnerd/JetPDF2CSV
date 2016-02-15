@@ -42,18 +42,17 @@ public class JetPDF2CSV {
             PDFTextStripper pdfStripper = new PDFTextStripper();
             pdfStripper.setStartPage(1);
             pdfStripper.setEndPage(pdDoc.getNumberOfPages());
-
             String parsedText = pdfStripper.getText(pdDoc);
 
             String[] pages = parsedText.split(tHead);
             for (int i = 0; i < pages.length; i++) {
-                String page = pages[i];
+                String page = pages[i].trim();
                 int year = 4711;
                 try {
-                    year = Integer.parseInt(page.substring(1, 5));
+                    year = Integer.parseInt(page.substring(0, 4));
                     // throw away year and month from first column
-                    String page_n = page.substring(8, page.length()).trim();
-                    String[] rows = page_n.split("\n");
+                    String page_n = page.substring(7, page.length()).trim();
+                    String[] rows = page_n.split(System.getProperty("line.separator"));
                     for (int j = 0; j < rows.length; j++) {
                         Flight curFlight = new Flight();
                         isFlight = false;
