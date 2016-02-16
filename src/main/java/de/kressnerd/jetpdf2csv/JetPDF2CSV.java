@@ -127,6 +127,11 @@ public class JetPDF2CSV {
 
             PrintWriter csvOut = new PrintWriter(args[0] + ".csv");
 
+
+
+            csvOut.println("Lfd-Nr.;Datum;Kennzeichen;Muster;PiC;Gast;Von;Nach;Startzeit;Landezeit;Stunden;Minuten;"+
+                    "Landungen;Startart;Bemerkungen;Flugbedingung;Startart;Lizenztyp;block-off;block-on;counter-on;"+
+                    "counter-off");
             int i = 1;
             for (Flight tmpFl : flightList) {
                 csvOut.print(i);
